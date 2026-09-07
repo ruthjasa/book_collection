@@ -14,10 +14,10 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      flash[:notice] = "Book '#{@book.title}' created successfully"
+      flash[:notice] = "Book was created successfully"
       redirect_to books_path
     else
-      render('new')
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -48,6 +48,6 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title)
+    params.require(:book).permit(:title, :author, :price, :published_date)
   end
 end
