@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root 'books#index'
+  resources :user_books
+  resources :users
+  resources :books
+  root 'user_books#index'
 
   resources :books do
     member do
